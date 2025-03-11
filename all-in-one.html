@@ -1,0 +1,186 @@
+10 10 10 10 10 10
+
+<html>
+<head>
+    <center><h1>INCOME TAX CALCULATION</h1></center>
+    <center>
+    <script language="javascript">
+        function tax() {
+            name = parseInt(document.fm.name.value);
+            no = parseInt(document.fm.no.value);
+            bp = parseInt(document.fm.bp.value);
+            
+            hra = bp * 0.15;
+            da = bp * 0.5;
+            pf = bp * 0.05;
+            gpay = bp + da + hra;
+            ai = gpay * 12;
+            tx = 0;
+            txm = 0;
+
+            if (ai >= 300000 && ai <= 500000)
+                tx = (ai - 300000) * 0.05;
+            else if (ai > 500000 && ai <= 1000000)
+                tx = 200000 * 0.05 + (ai - 500000) * 0.1;
+            else if (ai > 1000000 && ai <= 2000000)
+                tx = ai * 0.15;
+            else if (ai > 2000000)
+                tx = ai * 0.2;
+
+            if (tx != 0)
+                txm = tx / 12;
+
+            netpay = gpay - txm - pf;
+
+            document.getElementById("itcom").innerHTML =
+                "<h3>DA: 50% and HRA: 15%</h3>" +
+                "DA: " + da + "<br>HRA: " + hra + "<br>PF: " + pf + 
+                "<br>GROSS PAY: " + gpay + "<br>ANNUAL INCOME: " + ai + 
+                "<br>The Total Tax Amount: " + Math.round(tx) + 
+                "<br>Tax Deduction per Month: " + Math.round(txm) + 
+                "<br>Net pay: " + Math.round(netpay);
+        }
+    </script>
+</head>
+<body>
+    <form name="fm">
+        Emp_Name: <input type="text" name="name"><br><br>
+        Emp_No: <input type="text" name="no"><br><br>
+        Basic pay: <input type="text" name="bp"><br>
+        <div id="itcom"></div>
+        <input type="button" value="Tax Calc" onclick="tax()">
+    </form>
+</center>
+</body>
+</html>
+
+
+13 13 13 13 13 13 13 13 13 
+
+<html>
+<head>
+    <title>javaservlet</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <form action="javaservlet" method="post">
+        <h3>Username <input type="text" name="t1"></h3>
+        <h3>Password <input type="password" name="t2"></h3>
+        <button type="submit" name="btnsubmit">Submit</button>
+    </form>
+</body>
+</html>
+
+javaservlet
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(urlPatterns = {"/javaservlet"})
+public class javaservlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html;charset=UTF-8");
+
+        try (PrintWriter out = response.getWriter()) {
+            String str1 = request.getParameter("t1");
+            String str2 = request.getParameter("t2");
+
+            if (str1.equalsIgnoreCase("srmm") && str2.equals("computer")) {
+                out.println("<h1>Welcome: " + str1 + "</h1>");
+            } else {
+                out.println("<h1>Invalid Username/Password</h1>");
+            }
+        }
+    }
+}
+
+
+14 14 14 14 14 14 14 14
+
+<html>
+<body>
+    <h1><center><head>MOUSE EVENTS</head></center></h1>
+    <center>
+    <script>
+        function showmsg1(msg) {
+            alert(msg);
+        }
+    </script>
+
+    <h1 onmouseover="showmsg1('Mouse Over')" onmouseout="showmsg1('Mouse Out')">India</h1>
+    <h1 onmousedown="showmsg1('Mouse Down')">Tamil Nadu</h1>
+    <h1 onmouseup="showmsg1('Mouse Up')">Computer</h1>
+    <input type="button" value="Click" onclick="showmsg1('Simple Click')">
+    <h1 ondblclick="showmsg1('Double Click')">Welcome To All</h1>
+    </center>
+</body>
+</html>
+
+15 15 15 15 15 15 15 15 15
+
+<html>
+<head>
+<script language="javascript">
+function validate()
+{
+    if(frm.frmname.value=="")
+    {
+        alert("Please Enter your Name");
+        return false;
+    }
+    if(frm.frmmemail.value=="")
+    {
+        alert("Please Enter Your Mail Id");
+        return false;
+    }
+    if(frm.Frmradio[0].checked==false && frm.Frmradio[1].checked==false && frm.Frmradio[2].checked==false)
+    {
+        alert("Please Give Rating");
+        return false;
+    }
+    alert("Thanks for your Feedback");
+}
+</script>
+</head>
+<body>
+    <center>
+        <head>
+            <img src="\\server\UCS215044\images\College logo.png" height="200" width="200">
+        </head>
+    </center>
+    <center>
+        <h1>Sri S.Ramasamy Naidu Memorial College</h1>
+        <h4>(Affiliated to Madurai Kamaraj University)</h4>
+        <h3>Sattur-626203</h3>
+        <h3>Virudhunagar District-TamilNadu</h3>
+        <h2><u>STUDENT FEEDBACK FORM</u></h2>
+    </center>
+    <center>
+        <form name="frm" method="POST">
+            <br><b>Your Name</b><br>
+            <input type="text" size="40" name="frmname" value=""><br><br>
+
+            <b>Overall Rating:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+            <input type="radio" name="Frmradio" value="Excellent">Excellent
+            <input type="radio" name="Frmradio" value="Good">Good
+            <input type="radio" name="Frmradio" value="Bad">Bad
+            <br><br>
+
+            <b>Feedback</b><br>
+            <textarea name="Frmfeedback" cols="48" rows="8"></textarea>
+            <br><br>
+
+            <button onclick="alert('Your Feedback Form is Submitted');">Submit</button>
+            <input type="reset" name="FrmReset" value="Reset">
+        </form>
+    </center>
+</body>
+</html>
